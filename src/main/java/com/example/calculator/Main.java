@@ -35,11 +35,10 @@ public class Main {
                     default:
                         System.out.println("+, -, *, / 중 하나의 연산자를 입력하세요.");
                 }
-                System.out.println("계산하시겠습니까? (exit 입력시 종료)");
             } catch (Exception e) {
                 System.out.println("잘못된 값을 입력하였습니다: " + e.getMessage().split(": ")[1] + "\n양의 정수를 입력해주세요.");
-                return;
             }
+            System.out.println("계산하시겠습니까? (exit 입력시 종료)");
         }
         System.out.println("종료되었습니다.");
     }
