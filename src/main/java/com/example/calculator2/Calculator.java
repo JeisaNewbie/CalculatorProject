@@ -4,12 +4,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Calculator {
-    private Queue<Double> results;
+    private final Queue<Double> results = new LinkedList<>();;
     private AbstractOperation operation;
 
-    public Calculator() {
-        results = new LinkedList<>();
-    }
+    public Calculator() {}
 
     //Getter
     double getResult () {
