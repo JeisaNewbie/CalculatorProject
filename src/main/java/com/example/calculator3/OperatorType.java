@@ -4,7 +4,8 @@ public enum OperatorType {
     ADD,
     SUBSTRACT,
     MULTIPLY,
-    DIVIDE;
+    DIVIDE,
+    NOTOPERATOR;
 
     public static OperatorType convertOperatorToString(String operator) {
         switch (operator) {
@@ -16,6 +17,8 @@ public enum OperatorType {
                 return MULTIPLY;
             case "/":
                 return DIVIDE;
+            default:
+                return NOTOPERATOR;
         }
     }
 }
