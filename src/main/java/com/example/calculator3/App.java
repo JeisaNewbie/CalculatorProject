@@ -1,15 +1,44 @@
 package com.example.calculator3;
 
+import java.util.List;
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) {
-        boolean calculateEnded = false;
-        while(!calculateEnded) {
+        Scanner scanner = new Scanner(System.in);
+        ArithmeticCalculator cal = new ArithmeticCalculator();
+
+        System.out.println("계산하시겠습니까? (exit 입력시 종료)");
+        while (!scanner.nextLine().equals("exit")) {
             try {
-                CalculatorApp.start();
-            } catch (Exception e) { //CalculatorApp.start()에서 예외를 흘리기 때문에 main에서 받음
-                calculateEnded = true;
+                System.out.println("첫번째 숫자를 입력하세요: ");
+                Double firstNum = Double.parseDouble(scanner.nextLine());
+                System.out.println("두번째 숫자를 입력하세요: ");
+                Double secondNum = Double.parseDouble(scanner.nextLine());
+                System.out.println("사칙연산 기호(+, -, *, /)를 입력하세요: ");
+                String operator = scanner.nextLine();
+                cal.setResult(cal.calculate(firstNum, secondNum, operator));
+                System.out.println("결과는 " + cal.getResult() + " 입니다.");
+            } catch (ArithmeticException | BadInputException e) {
                 System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println("잘못된 값을 입력하였습니다." + e.getMessage().split(": ")[1] + "\n양의 정수를 입력해주세요.");
             }
+
+            List<Double> filterList = cal.getResults().stream().filter((ret) -> {
+                Double result = cal.getResults().getLast();
+                return result < ret;
+            }).toList();
+
+            System.out.println("마지막 값 " + cal.getResults().getLast() + " 보다 큰 값은");
+            if (!filterList.isEmpty()) {
+                filterList.forEach(ret -> System.out.println("-> " + ret));
+                System.out.println("입니다.");
+            } else {
+                System.out.println("없습니다.");
+            }
+            System.out.println("계산하시겠습니까? (exit 입력시 종료)");
         }
+        System.out.println("종료되었습니다.");
     }
 }
