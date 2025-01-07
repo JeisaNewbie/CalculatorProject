@@ -1,8 +1,8 @@
 package com.example.calculator3;
 
-public class SubstractOperation extends AbstractOperation {
+public class SubstractOperation<T extends Number> extends AbstractOperation {
     @Override
-    double operate(int firstNumber, int secondNumber) {
-        return firstNumber - secondNumber;
+    double operate(Number firstNumber, Number secondNumber) {
+        return firstNumber.doubleValue() - secondNumber.doubleValue();
     }
 }
