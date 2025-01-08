@@ -17,14 +17,15 @@ public class App {
                 Double secondNum = Double.parseDouble(scanner.nextLine());
                 System.out.println("사칙연산 기호(+, -, *, /)를 입력하세요: ");
                 String operator = scanner.nextLine();
-                cal.setResult(cal.calculate(firstNum, secondNum, operator));
+                cal.setResult(cal.calculate(firstNum, secondNum, operator)); //계산 후 해당 값을 저장
                 System.out.println("결과는 " + cal.getResult() + " 입니다.");
-            } catch (ArithmeticException | BadInputException e) {
+            } catch (ArithmeticException | BadInputException e) { //0으로 나누거나 사칙연산 기호가 아닌 값이 들어올 경우 예외처리
                 System.out.println(e.getMessage());
             } catch (Exception e) {
                 System.out.println("잘못된 값을 입력하였습니다." + e.getMessage().split(": ")[1] + "\n양의 정수를 입력해주세요.");
             }
 
+            //마지막으로 저장된 값을 꺼내서 조건에 맞는 값을 filtering
             List<Double> filterList = cal.getResults().stream().filter((ret) -> {
                 Double result = cal.getResults().getLast();
                 return result < ret;

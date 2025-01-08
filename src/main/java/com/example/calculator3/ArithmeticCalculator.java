@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class ArithmeticCalculator {
-    private final Deque<Double> results = new ArrayDeque<>();
+    private final Deque<Double> results = new ArrayDeque<>(); //마지막 값을 꺼내서 비교하기 위해 Queue 대신 Deque 사용
     private AbstractOperation<Number> operation;
 
     public ArithmeticCalculator() {}
