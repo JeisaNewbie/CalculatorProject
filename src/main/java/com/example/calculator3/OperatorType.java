@@ -1,24 +1,29 @@
 package com.example.calculator3;
 
 public enum OperatorType {
-    ADD,
-    SUBSTRACT,
-    MULTIPLY,
-    DIVIDE,
-    NOTOPERATOR;
+    ADD(new AddOperation<Number>()),
+    SUBSTRACT(new SubstractOperation<Number>()),
+    MULTIPLY(new MultiplyOperation<Number>()),
+    DIVIDE(new DivideOperation<Number>());
 
-    public static OperatorType convertOperatorToString(String operator) {
+    private final AbstractOperation<Number> operation;
+
+    OperatorType(AbstractOperation<Number> operation) {
+        this.operation = operation;
+    }
+
+    public static AbstractOperation<Number> getOperation(String operator) throws BadInputException {
         switch (operator) {
             case "+":
-                return ADD;
+                return ADD.operation;
             case "-":
-                return SUBSTRACT;
+                return SUBSTRACT.operation;
             case "*":
-                return MULTIPLY;
+                return MULTIPLY.operation;
             case "/":
-                return DIVIDE;
+                return DIVIDE.operation;
             default:
-                return NOTOPERATOR;
+                throw new BadInputException("+, -, *, /");
         }
     }
 }
