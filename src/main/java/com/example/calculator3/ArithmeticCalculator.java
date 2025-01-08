@@ -36,27 +36,7 @@ public class ArithmeticCalculator {
     }
 
     double calculate (Number firstNum, Number secondNum, String operator) throws Exception {
-        double result = 0;
-        switch (OperatorType.convertOperatorToString(operator)) {
-            case ADD:
-                this.setOperation(new AddOperation<Number>());
-                break;
-            case SUBSTRACT:
-                this.setOperation(new SubstractOperation<Number>());
-                break;
-            case MULTIPLY:
-                this.setOperation(new MultiplyOperation<Number>());
-                break;
-            case DIVIDE:
-                if (secondNum.doubleValue() == 0) {
-                    throw new ArithmeticException("0으로 나눌 수 없습니다.");
-                }
-                this.setOperation(new DivideOperation<Number>());
-                break;
-            default:
-                throw new BadInputException("+, -, *, / 중 하나의 연산자를 입력하세요.");
-        }
-        result = operation.operate(firstNum, secondNum);
-        return result;
+        this.setOperation(OperatorType.getOperation(operator));
+        return operation.operate(firstNum, secondNum);
     }
 }
