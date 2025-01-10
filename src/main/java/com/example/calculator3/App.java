@@ -27,21 +27,25 @@ public class App {
             System.out.println("결과는 " + cal.getResult() + " 입니다.");
 
             //마지막으로 저장된 값을 꺼내서 조건에 맞는 값을 filtering
-            List<Double> filterList = cal.getResults().stream().filter((ret) -> {
-                Double result = cal.getResults().getLast();
-                return result < ret;
-            }).toList();
-
-            System.out.println("마지막 값 " + cal.getResults().getLast() + " 보다 큰 값은");
-            if (!filterList.isEmpty()) {
-                filterList.forEach(ret -> System.out.println("-> " + ret));
-                System.out.println("입니다.");
-            } else {
-                System.out.println("없습니다.");
-            }
+            filteringAndPrintResult(cal);
             System.out.println("계산하시겠습니까? (exit 입력시 종료)");
         }
         System.out.println("종료되었습니다.");
+    }
+
+    private static void filteringAndPrintResult(ArithmeticCalculator cal) {
+        Double lastValue = cal.getResults().getLast();
+        List<Double> filterList = cal.getResults().stream()
+                .filter(ret -> lastValue < ret)
+                .toList();
+
+        System.out.println("마지막 값 " + lastValue + " 보다 큰 값은");
+        if (!filterList.isEmpty()) {
+            filterList.forEach(ret -> System.out.println("-> " + ret));
+            System.out.println("입니다.");
+        } else {
+            System.out.println("없습니다.");
+        }
     }
 
     private static void exceptionHandler(Exception e) {
