@@ -1,6 +1,6 @@
 package com.example.calculator3;
 
-public class BadInputException extends Exception{
+public class BadInputException extends RuntimeException {
     public BadInputException(String type) {
         super("잘못된 입력입니다! " + type + "을 입력해주세요!");
     }
