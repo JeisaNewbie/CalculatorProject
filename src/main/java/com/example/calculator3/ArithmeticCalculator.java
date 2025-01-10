@@ -35,7 +35,7 @@ public class ArithmeticCalculator {
         results.poll();
     }
 
-    double calculate (Number firstNum, Number secondNum, String operator) throws Exception {
+    double calculate (Number firstNum, Number secondNum, String operator) {
         this.setOperation(OperatorType.getOperation(operator));
         return operation.operate(firstNum, secondNum);
     }
